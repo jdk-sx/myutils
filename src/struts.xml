@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="root" namespace="/" extends="struts-default">
+		<interceptors> 
+			<interceptor name="validator" class="cn.mldn.util.interceptor.ValidatorInterceptor"/>
+			<interceptor-stack name="mldnStack">
+				<interceptor-ref name="validator"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="error.page">/error.jsp</result>
+			<result name="forward.page">/forward.jsp</result>
+		</global-results>
+		<action name="MessageAction" class="cn.mldn.action.MessageAction">
+			<!-- 配置的是错误的页面，而组成：业务方法名称.errorPage -->
+			<result name="add.errorPage">/message_add.jsp</result>
+			<result name="edit.errorPage">/message_list.jsp</result>
+			<interceptor-ref name="mldnStack"/>
+		</action> 
+		<action name="NewsAction" class="cn.mldn.action.NewsAction">
+			<!-- 配置的是错误的页面，而组成：业务方法名称.errorPage -->
+			<result name="add.errorPage">/message_add.jsp</result>
+			<result name="edit.errorPage">/message_list.jsp</result>
+			<interceptor-ref name="mldnStack"/>
+		</action>  
+	</package> 
+</struts>    
